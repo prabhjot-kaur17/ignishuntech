@@ -131,6 +131,52 @@ app.post("/api/auth/login", async (req, res) => {
   }
 });
 
+app.put("/api/auth/profile", async (req, res) => {
+  try {
+    const { userId, name, phone, company, address } = req.body;
+
+    if (!userId) {
+      return res.status(400).json({
+        message: "User ID is required",
+      });
+    }
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    user.name = name || user.name;
+    user.phone = phone || "";
+    user.company = company || "";
+    user.address = address || "";
+
+    await user.save();
+
+    res.json({
+      message: "Profile updated successfully",
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        company: user.company,
+        address: user.address,
+        role: user.role,
+      },
+    });
+  } catch (error) {
+    console.error("Profile update error:", error.message);
+
+    res.status(500).json({
+      message: "Server error",
+    });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

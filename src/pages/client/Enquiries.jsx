@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+const basePath = import.meta.env.BASE_URL;
+
+
 function Enquiries() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
@@ -36,32 +39,32 @@ function Enquiries() {
         </div>
 
         <nav className="client-nav">
-          <a href="/client/dashboard">
+          <a href={`${basePath}client/dashboard`}>
             <span>⌂</span>
             Dashboard
           </a>
 
-          <a href="/client/projects">
+          <a href={`${basePath}client/projects`}>
             <span>▣</span>
             My Projects
           </a>
 
-          <a href="/client/enquiries" className="active">
+          <a href={`${basePath}client/enquiries`} className="active">
             <span>◉</span>
             Enquiries
           </a>
 
-          <a href="/client/messages">
+          <a href={`${basePath}client/messages`}>
             <span>✉</span>
             Messages
           </a>
 
-          <a href="/client/documents">
+          <a href={`${basePath}client/documents`}>
             <span>▤</span>
             Documents
           </a>
 
-          <a href="/client/profile">
+          <a href={`${basePath}client/profile`}>
             <span>◎</span>
             Profile
           </a>
@@ -72,7 +75,7 @@ function Enquiries() {
             ← Back to Website
           </a>
 
-          <a href="/client/login">
+          <a href={`${basePath}client/login`}>
             ⇥ Logout
           </a>
         </div>

@@ -40,32 +40,32 @@ function Projects() {
 
         <nav className="client-nav">
 
-          <a href="/client/dashboard">
+          <a href={`${basePath}client/dashboard`}>
             <span>⌂</span>
             Dashboard
           </a>
 
-          <a href="/client/projects" className="active">
+          <a href={`${basePath}client/projects`} className="active">
             <span>▣</span>
             My Projects
           </a>
 
-          <a href="/client/enquiries">
+          <a href={`${basePath}client/enquiries`}>
             <span>◉</span>
             Enquiries
           </a>
 
-          <a href="/client/messages">
+          <a href={`${basePath}client/messages`}>
             <span>✉</span>
             Messages
           </a>
 
-          <a href="/client/documents">
+          <a href={`${basePath}client/documents`}>
             <span>▤</span>
             Documents
           </a>
 
-          <a href="/client/profile">
+          <a href={`${basePath}client/profile`}>
             <span>◎</span>
             Profile
           </a>
@@ -78,7 +78,7 @@ function Projects() {
             ← Back to Website
           </a>
 
-          <a href="/client/login">
+          <a href={`${basePath}client/login`}>
             ⇥ Logout
           </a>
 
@@ -138,7 +138,7 @@ function Projects() {
           </div>
 
           <a
-            href="/client/enquiries"
+            href={`${basePath}client/enquiries`}
             className="client-primary-btn"
           >
             Start New Project
@@ -301,7 +301,7 @@ function Projects() {
                 Last updated 2 hours ago
               </span>
 
-              <a href="/client/messages">
+              <a href={`${basePath}client/messages`}>
                 View Updates →
               </a>
 
@@ -435,7 +435,7 @@ function Projects() {
                 Last updated yesterday
               </span>
 
-              <a href="/client/messages">
+              <a href={`${basePath}client/messages`}>
                 View Updates →
               </a>
 
@@ -569,7 +569,7 @@ function Projects() {
                 Completed 28 Jul 2026
               </span>
 
-              <a href="/client/documents">
+              <a href={`${basePath}client/documents`}>
                 View Documents →
               </a>
 

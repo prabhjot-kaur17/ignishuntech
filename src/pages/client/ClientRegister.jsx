@@ -43,7 +43,7 @@ function ClientRegister() {
       setLoading(true);
 
       const response = await fetch(
-        "http://localhost:5000/api/auth/register",
+        "https://ignishuntech-backend.onrender.com/api/auth/register",
         {
           method: "POST",
           headers: {

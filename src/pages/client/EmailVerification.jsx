@@ -117,7 +117,7 @@ function EmailVerification() {
 
 
           <a
-            href="/client/login"
+            href={`${basePath}client/login`}
             className="back-home"
           >
             ← Back to Sign In

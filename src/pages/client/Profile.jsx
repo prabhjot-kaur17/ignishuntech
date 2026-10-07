@@ -1,7 +1,57 @@
 import { useState } from "react";
 
+const basePath = import.meta.env.BASE_URL;
+
 function Profile() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("profile-name").value;
+    const phone = document.getElementById("profile-phone").value;
+    const company = document.getElementById("profile-company").value;
+    const address = document.getElementById("profile-address").value;
+
+    try {
+      const response = await fetch(
+        "https://ignishuntech-backend.onrender.com/api/auth/profile",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: user.id,
+            name,
+            phone,
+            company,
+            address,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(data.message || "Profile update failed");
+        return;
+      }
+
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          ...user,
+          ...data.user,
+        })
+      );
+
+      alert("Profile updated successfully!");
+    } catch (error) {
+      console.error("Profile update error:", error);
+      alert("Unable to update profile. Please try again.");
+    }
+  };
 
   return (
     <main className="client-dashboard">
@@ -37,32 +87,32 @@ function Profile() {
         </div>
 
         <nav className="client-nav">
-          <a href="/client/dashboard">
+          <a href={`${basePath}client/dashboard`}>
             <span>⌂</span>
             Dashboard
           </a>
 
-          <a href="/client/projects">
+          <a href={`${basePath}client/projects`}>
             <span>▣</span>
             My Projects
           </a>
 
-          <a href="/client/enquiries">
+          <a href={`${basePath}client/enquiries`}>
             <span>◉</span>
             Enquiries
           </a>
 
-          <a href="/client/messages">
+          <a href={`${basePath}client/messages`}>
             <span>✉</span>
             Messages
           </a>
 
-          <a href="/client/documents">
+          <a href={`${basePath}client/documents`}>
             <span>▤</span>
             Documents
           </a>
 
-          <a href="/client/profile" className="active">
+          <a href={`${basePath}client/profile`} className="active">
             <span>◎</span>
             Profile
           </a>
@@ -73,7 +123,7 @@ function Profile() {
             ← Back to Website
           </a>
 
-          <a href="/client/login">
+          <a href={`${basePath}client/login`}>
             ⇥ Logout
           </a>
         </div>
@@ -96,12 +146,11 @@ function Profile() {
 
           <div className="client-user">
             <div className="client-avatar">
-              C
+              {(user.name || "Client").charAt(0).toUpperCase()}
             </div>
-
             <div>
-              <strong>Client</strong>
-              <span>Client Account</span>
+              <strong>{user.name || "Client"}</strong>
+              <span>{user.email || "Client Account"}</span>
             </div>
           </div>
         </header>
@@ -109,21 +158,13 @@ function Profile() {
         {/* PROFILE HEADER */}
         <section className="profile-header-card">
           <div className="profile-avatar-large">
-            C
+            {(user.name || "Client").charAt(0).toUpperCase()}
           </div>
 
           <div className="profile-header-info">
-            <p className="client-section-label">
-              CLIENT ACCOUNT
-            </p>
-
-            <h2>
-              Client Account
-            </h2>
-
-            <p>
-              client@example.com
-            </p>
+            <p className="client-section-label">CLIENT ACCOUNT</p>
+            <h2>{user.name || "Client"}</h2>
+            <p>{user.email || "client@example.com"}</p>
           </div>
 
           <div className="profile-status">
@@ -150,7 +191,7 @@ function Profile() {
               </div>
             </div>
 
-            <form className="profile-form">
+            <form className="profile-form" onSubmit={handleSubmit}>
 
               <div className="profile-form-grid">
 
@@ -162,7 +203,7 @@ function Profile() {
                   <input
                     type="text"
                     id="profile-name"
-                    defaultValue="Client Account"
+                    defaultValue={user.name || ""}
                   />
                 </div>
 
@@ -174,7 +215,7 @@ function Profile() {
                   <input
                     type="email"
                     id="profile-email"
-                    defaultValue="client@example.com"
+                    defaultValue={user.email || ""}
                   />
                 </div>
 
@@ -254,7 +295,7 @@ function Profile() {
                 </span>
               </div>
 
-              <a href="/client/forgot-password">
+              <a href={`${basePath}client/forgot-password`}>
                 Change
               </a>
             </div>

@@ -31,7 +31,7 @@ function Navbar() {
 
         {/* DESKTOP ACTIONS */}
         <div className="nav-actions">
-          <a href="/client/login" className="client-login">
+          <a href="/ignishuntech/client/login" className="client-login">
             Client Login
           </a>
 
@@ -80,7 +80,7 @@ function Navbar() {
         </a>
 
         <a
-          href="/client/login"
+          href="/ignishuntech/client/login"
           className="mobile-login"
           onClick={closeMenu}
         >

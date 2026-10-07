@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+const basePath = import.meta.env.BASE_URL;
+
 function ClientLogin() {
   const [formData, setFormData] = useState({
     email: "",
@@ -33,7 +35,7 @@ function ClientLogin() {
       setLoading(true);
 
       const response = await fetch(
-        "http://localhost:5000/api/auth/login",
+        "https://ignishuntech-backend.onrender.com/api/auth/login",
         {
           method: "POST",
           headers: {
@@ -61,7 +63,7 @@ function ClientLogin() {
 
       console.log("JWT token:", data.token);
 
-      window.location.href = "/client/dashboard";
+      window.location.href = `${import.meta.env.BASE_URL}client/dashboard`;
 
     } catch (error) {
       console.error("Login error:", error);
@@ -181,7 +183,7 @@ function ClientLogin() {
                   Password
                 </label>
 
-                <a href="/client/forgot-password">
+                <a href = {`${basePath}client/forgot-password`}>
                   Forgot password?
                 </a>
 
@@ -245,7 +247,7 @@ function ClientLogin() {
 
 
           <a
-            href="/client/register"
+            href={`${basePath}client/register`}
             className="auth-register"
           >
             Create a Client Account

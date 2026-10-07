@@ -107,7 +107,7 @@ function ForgotPassword() {
 
 
           <a
-            href="/client/login"
+            href={`${basePath}client/login`}
             className="auth-register"
           >
             Back to Sign In

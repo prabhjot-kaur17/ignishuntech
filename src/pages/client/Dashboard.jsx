@@ -1,7 +1,10 @@
 import { useState } from "react";
 
+const basePath = import.meta.env.BASE_URL;
+
 function Dashboard() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
 
   return (
     <main className="client-dashboard">
@@ -43,32 +46,32 @@ function Dashboard() {
 
         <nav className="client-nav">
 
-          <a href="/client/dashboard" className="active">
+          <a href={`${basePath}client/dashboard`} className="active">
             <span>⌂</span>
             Dashboard
           </a>
 
-          <a href="/client/projects">
+          <a href={`${basePath}client/projects`}>
             <span>▣</span>
             My Projects
           </a>
 
-          <a href="/client/enquiries">
+          <a href={`${basePath}client/enquiries`}>
             <span>◉</span>
             Enquiries
           </a>
 
-          <a href="/client/messages">
+          <a href={`${basePath}client/messages`}>
             <span>✉</span>
             Messages
           </a>
 
-          <a href="/client/documents">
+          <a href={`${basePath}client/documents`}>
             <span>▤</span>
             Documents
           </a>
 
-          <a href="/client/profile">
+          <a href={`${basePath}client/profile`}>
             <span>◎</span>
             Profile
           </a>
@@ -83,7 +86,7 @@ function Dashboard() {
           </a>
 
           <a
-            href="/client/login"
+            href={`${basePath}client/login`}
             onClick={() => {
               localStorage.removeItem("token");
               localStorage.removeItem("user");
@@ -115,12 +118,12 @@ function Dashboard() {
           <div className="client-user">
 
             <div className="client-avatar">
-              C
+              {(user.name || "Client").charAt(0).toUpperCase()}
             </div>
 
             <div>
-              <strong>Client</strong>
-              <span>Client Account</span>
+              <strong>{user.name || "Client"}</strong>
+              <span>{user.email || "Client Account"}</span>
             </div>
 
           </div>
@@ -147,7 +150,7 @@ function Dashboard() {
           </div>
 
           <a
-            href="/client/enquiries"
+            href={`${basePath}client/enquiries`}
             className="client-primary-btn"
           >
             Start an Enquiry
@@ -219,7 +222,7 @@ function Dashboard() {
                 <h3>Active Projects</h3>
               </div>
 
-              <a href="/client/projects">
+              <a href={`${basePath}client/projects`}>
                 View All →
               </a>
 
@@ -364,7 +367,7 @@ function Dashboard() {
 
             <div className="client-quick-actions">
 
-              <a href="/client/enquiries">
+              <a href={`${basePath}client/enquiries`}>
                 <span>+</span>
                 <div>
                   <strong>New Enquiry</strong>
@@ -373,7 +376,7 @@ function Dashboard() {
               </a>
 
 
-              <a href="/client/messages">
+              <a href={`${basePath}client/messages`}>
                 <span>✉</span>
                 <div>
                   <strong>Send Message</strong>
@@ -382,7 +385,7 @@ function Dashboard() {
               </a>
 
 
-              <a href="/client/documents">
+              <a href={`${basePath}client/documents`}>
                 <span>▤</span>
                 <div>
                   <strong>View Documents</strong>
@@ -391,7 +394,7 @@ function Dashboard() {
               </a>
 
 
-              <a href="/client/profile">
+              <a href={`${basePath}client/profile`}>
                 <span>◎</span>
                 <div>
                   <strong>Update Profile</strong>
@@ -418,7 +421,7 @@ function Dashboard() {
               assistance? Our team is ready to help.
             </p>
 
-            <a href="/client/messages">
+            <a href={`${basePath}client/messages`}>
               Contact Support →
             </a>
 

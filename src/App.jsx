@@ -11,83 +11,88 @@ import Messages from "./pages/client/Messages";
 import Documents from "./pages/client/Documents";
 import Profile from "./pages/client/Profile";
 
+const basePath = import.meta.env.BASE_URL;
+
+const currentPath = window.location.pathname.replace(basePath, "/");
+
 function App() {
-    if (window.location.pathname === "/client/login") {
+    if (currentPath === "/client/login") {
         return <ClientLogin />;
     }
 
-    if (window.location.pathname === "/client/register") {
+
+    if (currentPath === "/client/register") {
         return <ClientRegister />;
     }
 
-    if (window.location.pathname === "/client/forgot-password") {
+    if (currentPath === "/client/forgot-password") {
         return <ForgotPassword />;
     }
 
-    if (window.location.pathname === "/client/verify-email") {
+    if (currentPath === "/client/verify-email") {
         return <EmailVerification />;
     }
 
-    if (window.location.pathname === "/client/dashboard") {
+    if (currentPath === "/client/dashboard") {
         const token = localStorage.getItem("token");
 
         if (!token) {
-            window.location.href = "/client/login";
+            window.location.href = `${basePath}client/login`;
             return null;
         }
 
         return <Dashboard />;
     }
 
-    if (window.location.pathname === "/client/projects") {
+    if (currentPath === "/client/projects") {
         const token = localStorage.getItem("token");
 
         if (!token) {
-            window.location.href = "/client/login";
+            window.location.href = `${basePath}client/login`;
             return null;
         }
 
         return <Projects />;
     }
 
-    if (window.location.pathname === "/client/enquiries") {
+    if (currentPath === "/client/enquiries") {
         const token = localStorage.getItem("token");
 
         if (!token) {
-            window.location.href = "/client/login";
+            window.location.href = `${basePath}client/login`;
             return null;
         }
 
         return <Enquiries />;
     }
 
-    if (window.location.pathname === "/client/messages") {
+    if (currentPath === "/client/messages") {
         const token = localStorage.getItem("token");
 
         if (!token) {
-            window.location.href = "/client/login";
+            window.location.href = `${basePath}client/login`;
             return null;
         }
 
         return <Messages />;
     }
 
-    if (window.location.pathname === "/client/documents") {
+    if (currentPath === "/client/documents") {
         const token = localStorage.getItem("token");
 
         if (!token) {
-            window.location.href = "/client/login";
+            window.location.href = `${basePath}client/login`;
             return null;
         }
 
         return <Documents />;
     }
 
-    if (window.location.pathname === "/client/profile") {
+    if (currentPath === "/client/profile") {
         const token = localStorage.getItem("token");
 
         if (!token) {
-            window.location.href = "/client/login";
+            window.location.href = `${basePath}client/login`;
             return null;
         }
 
